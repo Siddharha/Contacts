@@ -104,7 +104,7 @@ class AppUtil {
                                     viewHolder.itemView.width.toFloat(),
                                     itemView.bottom.toFloat()
                                 )
-                                c.drawRoundRect(background, 90f, 90f, p)
+                                c.drawRoundRect(background, 5f, 5f, p)
                                 icon =
                                     AppUtil.getBitmapFromDrawable(context, R.drawable.ic_edit_white)
                                 val icon_dest = RectF(
@@ -125,7 +125,7 @@ class AppUtil {
                                     itemView.right.toFloat(),
                                     itemView.bottom.toFloat()
                                 )
-                                c.drawRoundRect(background, 90f, 90f, p)
+                                c.drawRoundRect(background, 5f, 5f, p)
                                 icon = AppUtil.getBitmapFromDrawable(
                                     context,
                                     R.drawable.ic_delete_white
