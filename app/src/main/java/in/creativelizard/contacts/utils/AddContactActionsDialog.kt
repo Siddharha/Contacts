@@ -26,13 +26,24 @@ class AddContactActionsDialog(context: Context,val db:AppDatabase) : BottomSheet
         setContentView(layoutInflater.inflate(R.layout.dialog_add_contact_actions, null))
 
         btnAdd.setOnClickListener {
-            doAsync {
-                val itm = ContactItem(etName.text.toString(),
-                    etMail.text.toString(),
-                    etNumber.text.toString())
-                db.contactDao().insertContact(itm)
-                addContactCompleteCallback.onContactAdded(true)
+            if(etName.text.isNotEmpty()){
+                if(etMail.text.isNotEmpty()){
+                    if(etNumber.text.isNotEmpty()){
+                        doAsync {
+                            val itm = ContactItem(etName.text.toString(),
+                                etMail.text.toString(),
+                                etNumber.text.toString())
+                            db.contactDao().insertContact(itm)
+                            addContactCompleteCallback.onContactAdded(true)
+                        }
+                    }else{
+                        etNumber.error = "Enter number of contact"
+                    }
+                }else{ etMail.error = "Enter email of contact"}
+            }else{
+                etName.error = "Enter Name of contact"
             }
+
 
 
 

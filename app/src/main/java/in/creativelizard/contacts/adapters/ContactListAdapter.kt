@@ -1,7 +1,10 @@
 package `in`.creativelizard.contacts.adapters
 
 import `in`.creativelizard.contacts.beans.ContactItem
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,9 +35,16 @@ class ContactListAdapter (private val list: List<ContactItem>,
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        @SuppressLint("MissingPermission")
         fun bindItems(item: ContactItem) {
             itemView.tvName.text = item.name
             itemView.tvNumber.text = item.number
+
+            itemView.imgCall.setOnClickListener {
+                val callIntent =  Intent(Intent.ACTION_CALL)
+                callIntent.data = Uri.parse("tel:${item.number}")
+                context.startActivity(callIntent)
+            }
 
         }
     }
